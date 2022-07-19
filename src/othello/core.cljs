@@ -28,7 +28,7 @@
      {:on-click
       (fn new-game-click [e]
         (reset! app-state (tictactoe/new-game 3)))}
-     "New Tic Tac Toe Game"]
+     "New Tic Tac Toe Game abcdefg"]
     [:button
      {:on-click
       (fn new-game-click [e]

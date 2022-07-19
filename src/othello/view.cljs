@@ -50,6 +50,13 @@
     :cx (+ 0.5 i)
     :cy (+ 0.5 j)}])
 
+(defn discs [i j]
+  [:circle
+   {:r 0.1
+    :fill "red"
+    :cx (+ 0.25 j)
+    :cy (+ 0.5 j)}])
+
 (defcard-rg board-example
   [:svg
    {:view-box "0 0 5 1"
@@ -81,7 +88,7 @@
             :when (not= " " x)]
         (case x
           "B" [black-disc i j]
-          "W" [white-disc i j]
+          "W" [discs i j]
           "C" [cross i j]
           "P" [circle i j]))))))
 
