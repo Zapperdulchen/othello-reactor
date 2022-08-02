@@ -1,0 +1,12 @@
+^{;; :on-jsload "othello.run/run" ;; Setting :figwheel true or :figwheel { :on-jsload "example.core/reload-hook" } will automagically insert the figwheel client code into your application. If you supply :on-jsload the name of a function, that function will be called after new code gets reloaded.
+  }
+{:main othello.core
+ :source-paths ["src" "test"]
+ :devcards true
+ :figwheel {:on-jsload "othello.run/run"}
+ ;; :figwheel {:on-jsload "othello.core/on-js-reload"}
+ :asset-path "js/devcards"
+ :output-to "resources/public/js/compiled/devcards.js"
+ :output-dir "resources/public/js/devcards"
+ :source-map-timestamp true}
+

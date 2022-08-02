@@ -1,0 +1,17 @@
+^{:css-dirs ["resources/public/css"]
+  ;; :extra-main-files {:devcards {:main othello.core
+  ;;                               :asset-path "js/compiled/out"
+  ;;                               :asset-path "js/devcards"
+  ;;                               :output-to "resources/public/js/compiled/devcards.js"
+  ;;                               :output-dir "resources/public/js/devcards"
+  ;;                               :source-map-timestamp true
+  ;;                               :figwheel {:devcards true
+  ;;                                          :on-jsload "othello.run/run"}}}
+  }
+{:main othello.core
+ :source-paths ["src" "test"]
+ :figwheel {:on-jsload "othello.core/on-js-reload"}
+ :asset-path "js/compiled/out"
+ :output-to "resources/public/js/compiled/othello.js"
+ :output-dir "resources/public/js/compiled/out"
+ :source-map-timestamp true}
