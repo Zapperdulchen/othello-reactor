@@ -3,7 +3,7 @@
             [othello.othello :as othello]
             [othello.game :as game]
             [reagent.core :as reagent]
-            [devcards.core :refer-macros [defcard-rg deftest]]))
+            [devcards.core :refer-macros [defcard-rg defcard deftest]]))
 
 (defn blank
   [game i j background-color]
@@ -51,11 +51,19 @@
     :cy (+ 0.5 j)}])
 
 (defn discs [i j]
-  [:circle
-   {:r 0.1
-    :fill "red"
-    :cx (+ 0.25 j)
-    :cy (+ 0.5 j)}])
+  [:g {:fill "red"}
+   [:circle
+    {:r 0.1
+     :cx (+ 0.5 i)
+     :cy (+ 0.25 j)}]
+   [:circle
+    {:r 0.1
+     :cx (+ 0.25 i)
+     :cy (+ 0.5 j)}]
+   [:circle
+    {:r 0.1
+     :cx (+ 0.75 i)
+     :cy (+ 0.5 j)}]])
 
 (defcard-rg board-example
   [:svg
@@ -97,3 +105,8 @@
 
 (defcard-rg tictactoe-example
   [game-board (reagent/atom (tictactoe/new-game 3))])
+
+(defcard my-first-card
+  (str "<H1>TEST</H1>")
+  ;; (sab/html [:h1 "Devcards is freaking awesome!"])
+  )
