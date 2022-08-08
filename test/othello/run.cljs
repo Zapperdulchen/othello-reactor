@@ -12,4 +12,5 @@
     (println "FAIL")))
 
 (defn run []
+  (println "running tests ...")
   (run-all-tests))

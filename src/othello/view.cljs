@@ -3,7 +3,9 @@
             [othello.othello :as othello]
             [othello.game :as game]
             [reagent.core :as reagent]
-            [devcards.core :refer-macros [defcard-rg defcard deftest]]))
+            [sablono.core :as sab] ; del
+            [devcards.core :refer-macros [defcard-rg defcard deftest]]
+            [cljs.test :as test]))
 
 (defn blank
   [game i j background-color]
@@ -107,6 +109,6 @@
   [game-board (reagent/atom (tictactoe/new-game 3))])
 
 (defcard my-first-card
-  (str "<H1>TEST</H1>")
-  ;; (sab/html [:h1 "Devcards is freaking awesome!"])
-  )
+  (sab/html [:h1 "Devcards is freaking awesome!"]))
+
+(println "inside view.cljs 12")

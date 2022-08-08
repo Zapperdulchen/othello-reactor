@@ -2,12 +2,13 @@
   (:require [othello.game]
             [othello.tictactoe :as tictactoe]
             [othello.othello :as othello]
+            [othello.reactor :as reactor]
             [othello.view :as view]
             [clojure.string :as string]
             [reagent.core :as reagent :refer [atom]]
             [cljs.test :refer-macros [is testing]]))
 
-(enable-console-print!)
+;; (enable-console-print!)
 
 (defonce app-state
   (atom nil))
@@ -28,12 +29,18 @@
      {:on-click
       (fn new-game-click [e]
         (reset! app-state (tictactoe/new-game 3)))}
-     "New Tic Tac Toe Game abcdefg"]
+     "New Tic Tac Toe Game"]
     [:button
      {:on-click
       (fn new-game-click [e]
         (reset! app-state (othello/new-game 8)))}
-     "New Othello Game"]]
+     "New Othello Game"]
+    [:button
+     {:on-click
+      (fn new-game-click [e]
+        (reset! app-state (reactor/new-game 8)))}
+     "New Reactor Game"]]
+
    (when @app-state
      [view/game-board app-state])])
 
@@ -45,3 +52,5 @@
 
 (defn on-js-reload []
   (main))
+
+(println "this goes to the repl - 12")

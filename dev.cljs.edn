@@ -7,8 +7,11 @@
   ;;                               :source-map-timestamp true
   ;;                               :figwheel {:devcards true
   ;;                                          :on-jsload "othello.run/run"}}}
+  :watch-dirs ["src" "test"]
+  :extra-main-files {:devcards {:main othello.run}}
   }
 {:main othello.core
+ :devcards true
  :source-paths ["src" "test"]
  :figwheel {:on-jsload "othello.core/on-js-reload"}
  :asset-path "js/compiled/out"
