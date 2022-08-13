@@ -8,8 +8,8 @@
   ;;                               :figwheel {:devcards true
   ;;                                          :on-jsload "othello.run/run"}}}
   :watch-dirs ["src" "test"]
-  :extra-main-files {:devcards {:main othello.run}}
-  }
+  ;; :extra-main-files {:devcards {:main othello.run}}
+  :extra-main-files {:devcards {:main othello.cards}}}
 {:main othello.core
  :devcards true
  :source-paths ["src" "test"]

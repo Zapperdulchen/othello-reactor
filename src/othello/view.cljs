@@ -53,23 +53,100 @@
     :cy (+ 0.5 j)}])
 
 (defn discs [i j]
-  [:g {:fill "red"}
+  [:g {:fill "red"
+       :transform
+       (str "translate(" (+ 0.5 i) "," (+ 0.5 j) ") "
+            "scale(0.3)")}
    [:circle
-    {:r 0.1
-     :cx (+ 0.5 i)
-     :cy (+ 0.25 j)}]
+    {:r 0.45
+     :cx 0
+     :cy -0.5}]
    [:circle
-    {:r 0.1
-     :cx (+ 0.25 i)
-     :cy (+ 0.5 j)}]
+    {:r 0.45
+     :cx -0.7
+     :cy 0.5}]
    [:circle
-    {:r 0.1
-     :cx (+ 0.75 i)
-     :cy (+ 0.5 j)}]])
+    {:fill "black"
+     :r 0.45
+     :cx 0.7
+     :cy 0.5}]])
+
+(defn squares [i j]
+  [:g {:fill "red"
+       :transform
+       (str "translate(" (+ 0.5 i) "," (+ 0.5 j) ") "
+            "scale(0.3)")}
+   [:rect
+    {:fill "green"
+     :width 0.9
+     :height 0.9
+     :x -0.4
+     :y -1.05
+     :rx 0.08
+     :ry 0.08}]
+   [:rect
+    {:width 0.9
+     :height 0.9
+     :x -1
+     :y 0.1
+     :rx 0.08
+     :ry 0.08}]
+   [:rect
+    {:width 0.9
+     :height 0.9
+     :x 0.2
+     :y 0.1
+     :rx 0.08
+     :ry 0.08}]])
+
+(defn triangles [i j]
+  [:g {:fill "red"
+       :transform
+       (str "translate(" (+ 0.5 i) "," (+ 0.5 j) ") "
+            "scale(3)")}
+   [:rect
+    {:fill "green"
+     :width 0.9
+     :height 0.9
+     :x -0.4
+     :y -1.05
+     :rx 0.08
+     :ry 0.08}]
+   [:rect
+    {:width 0.9
+     :height 0.9
+     :x -1
+     :y 0.1
+     :rx 0.08
+     :ry 0.08}]
+   [:rect
+    {:width 0.9
+     :height 0.9
+     :x 0.2
+     :y 0.1
+     :rx 0.08
+     :ry 0.08}]])
+(defn particles [i j p n]
+  (let [p2c ["red" "blue" "green" "yellow"]]))
+
+(defn piece [i j]
+  [:g {:fill "red"
+       :transform
+       (str ;; "translate(" i "," j ") "
+            "translate(" (+ 0.05 i) "," (+ 0.05 j) ") "
+            "scale(0.004)")}
+  ;; [:svg {:viewbox "0 0 500 500", :width "100", :height "100", :xmlns "http://www.w3.org/2000/svg"}
+ [:g {:fill "red", :stroke "black", :stroke-width "3"}
+  [:circle {:cx "50", :cy "50", :r "39", }];; :transform "translate(000,000)"}]
+  ;; [:rect {:x "11", :y "11", :width "78", :height "78", :transform "translate(100,100)"}]
+  ;; [:polygon {:points "11 89 50 11 89 89", :transform "translate(200,200)"}]
+  ;; [:polygon {:points "50 0 83 39 50 78 17 39", :transform "translate(300,300)"}]
+;;
+  ]])
 
 (defcard-rg board-example
   [:svg
-   {:view-box "0 0 5 1"
+   {:view-box "0 0 5 2"
     :width 500
     :height 100}
    [blank (atom {}) 0 0 "lightgrey"]
@@ -78,7 +155,15 @@
    [blank (atom {}) 3 0 "green"]
    [black-disc 3 0]
    [blank (atom {}) 4 0 "green"]
-   [white-disc 4 0]])
+   [white-disc 4 0]
+   [blank (atom {}) 0 1 "lightgrey"]
+   [discs 0 1]
+   [blank (atom {}) 1 1 "lightgrey"]
+   [squares 1 1]
+   [blank (atom {}) 2 1 "lightblue"]
+   [piece 2 1]
+  ;
+   ])
 
 (defn game-board [game]
   (let [{:keys [board-size background-color]} @game]

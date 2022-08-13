@@ -6,6 +6,7 @@
             [othello.view :as view]
             [clojure.string :as string]
             [reagent.core :as reagent :refer [atom]]
+            [reagent.dom :as reagent-dom]
             [cljs.test :refer-macros [is testing]]))
 
 ;; (enable-console-print!)
@@ -46,11 +47,11 @@
 
 (defn ^:export main []
   (when-let [app (. js/document (getElementById "app"))]
-    (reagent/render-component [main-view] app)))
+    (reagent-dom/render-component [main-view] app)))
 
 (main)
 
 (defn on-js-reload []
   (main))
 
-(println "this goes to the repl - 12")
+(println "this goes to the repl")
