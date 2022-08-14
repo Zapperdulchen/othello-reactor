@@ -11,7 +11,7 @@
   }
  :aliases {:dev {:extra-paths ["test" "resources" "devcards" "dev"]
                  :extra-deps {com.bhauman/figwheel-main {:mvn/version "0.2.0-SNAPSHOT"}
-                              devcards {:mvn/version "0.2.7"}
+                              devcards/devcards {:mvn/version "0.2.7"}
                               com.bhauman/cljs-test-display {:mvn/version "0.1.1"}}}
            :repl {:main-opts ["-m" "figwheel.main" "-b" "dev" "-r"]}}
  :paths ["src" "resources" "target"]}
