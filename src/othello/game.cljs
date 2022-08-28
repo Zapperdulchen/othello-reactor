@@ -3,7 +3,10 @@
 (defmulti can-move? (fn [game i j player] (:type game)))
 (defmulti win? (fn [game player] (:type game)))
 (defmulti draw? :type)
+(defmulti new-game (fn [game-key n] game-key))
+(defmulti meeple (fn [game-key m i j] game-key))
 
+;; todo diese Funktion muss defmulti werden
 (def other-player
   {"W" "B"
    "B" "W"
@@ -46,6 +49,8 @@
 (defn player-move [game i j]
   (let [{:keys [board board-size player]} @game
         g (can-move? @game i j player)]
+    (println game)
+    (println g)
     (when g
       (reset! game g)
       (if (win? @game player)

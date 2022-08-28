@@ -1,11 +1,11 @@
 (ns othello.tictactoe
   (:require
-   [othello.game :as game :refer [draw? can-move? available? win?]]
+   [othello.game :as game :refer [draw? can-move? available? win? new-game]]
    [cljs.test :refer-macros [is]]
    [devcards.core :refer-macros [deftest]]))
 
-(defn new-game [n]
-  {:type :tictactoe
+(defmethod new-game :tictactoe [game-key n]
+  {:type game-key
    :status :in-progress
    :background-color "lightgrey"
    :player "P"

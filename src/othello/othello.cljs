@@ -1,13 +1,13 @@
 (ns othello.othello
   (:require
-   [othello.game :as game :refer [draw? can-move? available? win?]]
+   [othello.game :as game :refer [draw? can-move? available? win? new-game]]
    [cljs.test :refer-macros [is]]
    [devcards.core :refer-macros [deftest]]))
 
-(defn new-game [n]
-  {:type :othello
+(defmethod new-game :othello [game-key n]
+  {:type game-key
    :status :in-progress
-   :background-color "green"
+   :background-color "blue"
    :player "B"
    :computer "W"
    :board-size n
@@ -85,10 +85,10 @@
        (empty? (game/available-moves game player))))
 
 (deftest draw-test
-  (is (draw? (assoc (new-game 2)
+  (is (draw? (assoc (new-game :othello 2)
                     :board [["B" "W"]
                             ["W" "B"]])))
-  (is (not (draw? (assoc (new-game 3)
+  (is (not (draw? (assoc (new-game :othello 3)
                          :board [["B" "W" " "]
                                  ["W" "B" " "]
                                  [" " " " " "]])))))
@@ -110,7 +110,7 @@
 (deftest computer-moves-twice-to-win
   (let [{:keys [board status]}
         (game/check-game-status
-         (assoc (new-game 3)
+         (assoc (new-game :othello 3)
                 :board [["W" "B" " "]
                         [" " " " " "]
                         ["W" "B" " "]]))]
