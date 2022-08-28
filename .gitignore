@@ -14,3 +14,7 @@ pom.xml
 .repl
 .nrepl-port
 *.~undo-tree~
+.lsp/
+.cpcache/
+.clj-kondo/
+

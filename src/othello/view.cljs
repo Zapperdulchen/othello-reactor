@@ -69,9 +69,12 @@
                :transform
                (str "translate(" (+ 0.5 i) "," (+ 0.5 j) ") "
                     "scale(0.3)")}]
-          (map #(vector (first comp) (assoc (second comp)
-                                            :transform (str "translate(" % ")")))
-               (positions n)))))
+          ;; debug
+          (if (> n 3)
+            [[:text {:x i :y j :transform "scale(0.1)"} (str n)]]
+            (map #(vector (first comp) (assoc (second comp)
+                                              :transform (str "translate(" % ")")))
+                 (positions n))))))
 
 (defn particles [i j n p]
   (let [player2color ["blue" "red" "green" "yellow"]
@@ -145,3 +148,7 @@
 
 (defcard-rg tictactoe-example
   [game-board (reagent/atom (game/new-game :tictactoe 3))])
+
+(defcard-rg reactor-example
+  [game-board (reagent/atom (game/new-game :reactor 8))])
+

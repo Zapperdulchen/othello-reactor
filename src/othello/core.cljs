@@ -39,7 +39,7 @@
     [:button
      {:on-click
       (fn new-game-click [e]
-        (reset! app-state (game/new-game :reactor 8)))}
+        (reset! app-state (game/new-game :reactor 4)))}
      "New Reactor Game"]]
 
    (when @app-state

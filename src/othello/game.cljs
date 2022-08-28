@@ -49,8 +49,6 @@
 (defn player-move [game i j]
   (let [{:keys [board board-size player]} @game
         g (can-move? @game i j player)]
-    (println game)
-    (println g)
     (when g
       (reset! game g)
       (if (win? @game player)

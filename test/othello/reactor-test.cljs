@@ -1,10 +1,23 @@
 (ns othello.reactor-test
   (:require
    [cljs.test :refer [is testing]]
-   [devcards.core :refer-macros [deftest]]
+   [devcards.core :refer-macros [deftest defcard-rg]]
    [othello.reactor-core :refer [add-particle]]
    [othello.reactor-core-test :refer [empty-board full-board specific-board]]
-   [othello.game :refer [win?]]))
+   [othello.game :as game :refer [win?]]
+   [othello.view :as view]
+   [reagent.core :as reagent]))
+
+(defcard-rg reactor-example-turned-rogue
+  (let [game (game/new-game :reactor 4)
+        board (-> (:board game)
+                  (othello.reactor-core/force-particle 1 1 0)
+                  (othello.reactor-core/force-particle 1 1 0)
+                  (othello.reactor-core/force-particle 1 1 0)
+                  (othello.reactor-core/force-particle 1 1 0)
+                  (othello.reactor-core/force-particle 1 1 0))
+        rogue-game (assoc game :board board)]
+    [view/game-board (reagent/atom rogue-game)]))
 
 (deftest win?-test-1
   (let [game {:type :reactor
