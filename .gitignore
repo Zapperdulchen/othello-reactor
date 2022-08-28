@@ -13,3 +13,4 @@ pom.xml
 .lein-failures
 .repl
 .nrepl-port
+*.~undo-tree~
