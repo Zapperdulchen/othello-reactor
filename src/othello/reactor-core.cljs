@@ -50,7 +50,7 @@
     (get-in (all-adjacent-fields width height) [y x])))
 
 (defn fission? [board x y]
-  (= (:count (get-particles board x y))
+  (>= (:count (get-particles board x y))
      (count (adjacent-fields board x y))))
 
 (defn fission-field [board x y]
@@ -60,14 +60,18 @@
             (adjacent-fields board x y))))
 
 (defn fission [board]
-  (let [fissions
-        (for [y (range (count board))
-              x (range (count (first board)))
-              :when (fission? board x y)]
-          [x y])]
-    (if (empty? fissions)
-      board
-      (fission (reduce (fn [board [x y]] (fission-field board x y)) board fissions)))))
+  (loop [board board
+         n 1]
+    (println board)
+    (println n)
+    (let [fissions
+          (for [y (range (count board))
+                x (range (count (first board)))
+                :when (fission? board x y)]
+            [x y])]
+      (if (empty? fissions)
+        board
+        (recur (reduce (fn [board [x y]] (fission-field board x y)) board fissions) (inc n))))))
 
 
 ;; (defn particle-colors [board]
