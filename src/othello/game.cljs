@@ -6,13 +6,6 @@
 (defmulti new-game (fn [game-key n] game-key))
 (defmulti meeple (fn [game-key m i j] game-key))
 
-;; todo diese Funktion muss defmulti werden
-(def other-player
-  {"W" "B"
-   "B" "W"
-   "C" "P"
-   "P" "C"})
-
 (defn game-status [{:keys [computer player] :as game}]
   (cond
     (win? game player) :player-victory

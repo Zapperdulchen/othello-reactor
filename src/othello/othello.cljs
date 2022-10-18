@@ -31,8 +31,14 @@
   (is (= [[1 1] [2 2] [3 3]]
          (take 3 (line 0 0 1 1)))))
 
+(def other-player
+  {"W" "B"
+   "B" "W"
+   "C" "P"
+   "P" "C"})
+
 (defn capture-line [board x y dx dy player]
-  (when-let [opponent (game/other-player player)]
+  (when-let [opponent (other-player player)]
     (loop [x (+ x dx)
            y (+ y dy)
            found []]

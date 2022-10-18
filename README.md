@@ -1,7 +1,25 @@
-# Othello
+# Todo
 
-http://timothypratley.github.io/othello/
-https://youtu.be/7fYmxt29Id4
+- one should be able to add pieces also by clicking on pieces. at the moment it only works when clicking on empty spaces on a field 
+- the rythm of reactor is not player - computer - player, but player - fissions - computer - fissions otherwise it becomes hard to understand why one has lost
+- undo
+- replay
+- animate fissions
+- smarter computer player
+- multiple player reactor (1st more computer opponents, 2nd more humans)
+- README.md 
+
+# Othello TicTacToe Reactor
+
+This is a fork of http://timothypratley.github.io/othello/
+
+I used the base to implement the front-end to a reactor game. As a Clojure newbie I learned a lot on:
+
+- Moving a ClojureScript project including devcards from Leiningen to clj
+- Understanding a miniscule code base from someone else without knowing the involved frameworks so that I can enhance it
+- Doing front-end development 
+
+_old readme:_
 
 ## Overview
 

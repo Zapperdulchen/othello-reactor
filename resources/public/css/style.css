@@ -1,2 +1,12 @@
-/* some style */
+.container{
+    position: relative;
+}
+.container > img{
+    position: absolute;
+    top:0;
+    left:0;
+}
+.container > img:first-child{
+    z-index: 2;
+}
 

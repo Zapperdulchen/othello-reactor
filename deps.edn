@@ -1,15 +1,17 @@
 {:deps
  {org.clojure/clojure {:mvn/version "1.11.0"}
-  org.clojure/clojurescript {:mvn/version "1.10.758"} ;; {:mvn/version "1.7.122"}
+  org.clojure/clojurescript {:mvn/version "1.10.758"} ; {:mvn/version "1.7.122"}
+  org.clojure/core.async {:mvn/version "1.5.648"} ; {:mvn/version "1.3.610"}
   reagent/reagent {:mvn/version "1.1.1"}
   cljsjs/react {:mvn/version "17.0.2-0"}
   cljsjs/react-dom {:mvn/version "17.0.2-0"}
+  hickory/hickory {:mvn/version "0.7.1"}
   ;; devcards/devcards {:mvn/version  "0.2.1"}
   ;; com.bhauman/figwheel-main {:mvn/version "0.2.0-SNAPSHOT"}
   ;; com.bhauman/rebel-readline-cljs {:mvn/version "0.1.4"}
   ;; com.bhauman/cljs-test-display {:mvn/version "0.1.1"}
   }
- :aliases {:dev {:extra-paths ["test" "devcards" "dev"]
+ :aliases {:dev {:extra-paths ["test" "devcards" "dev" "resources/public/img"]
                  :extra-deps {com.bhauman/figwheel-main {:mvn/version "0.2.0-SNAPSHOT"}
                               devcards/devcards {:mvn/version "0.2.7"}
                               com.bhauman/cljs-test-display {:mvn/version "0.1.1"}}}

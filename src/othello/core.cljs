@@ -3,6 +3,7 @@
             [othello.tictactoe :as tictactoe]
             [othello.othello :as othello]
             [othello.reactor :as reactor]
+            [othello.reactor-core :as reactor-core]
             [othello.view :as view]
             [clojure.string :as string]
             [reagent.core :refer [atom]]
@@ -13,6 +14,11 @@
 
 (defonce app-state
   (atom nil))
+
+(defn new-game-click-callback [type size]
+  (fn new-game-click [e]
+    (reset! app-state (game/new-game type size))
+    (reset! view/observations nil)))
 
 (defn main-view []
   [:center
@@ -28,22 +34,19 @@
    [:div
     [:button
      {:on-click
-      (fn new-game-click [e]
-        (reset! app-state (game/new-game :tictactoe 3)))}
+      (new-game-click-callback :tictactoe 3)}
      "New Tic Tac Toe Game"]
     [:button
      {:on-click
-      (fn new-game-click [e]
-        (reset! app-state (game/new-game :othello 8)))}
+      (new-game-click-callback :othello 8)}
      "New Othello Game"]
     [:button
      {:on-click
-      (fn new-game-click [e]
-        (reset! app-state (game/new-game :reactor 4)))}
+      (new-game-click-callback :reactor 4)}
      "New Reactor Game"]]
 
    (when @app-state
-     [view/game-board app-state])])
+     [view/game-board! app-state])])
 
 (defn ^:export main []
   (when-let [app (. js/document (getElementById "app"))]

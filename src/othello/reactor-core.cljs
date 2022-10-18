@@ -13,9 +13,10 @@
 (defn del-particles [board x y]
   (assoc-in board [y x] empty-field))
 
+;; add-particle without validating first, necessary for fissions
 (defn force-particle [board x y color]
   (assoc-in board [y x]
-            (assoc 
+            (assoc
              (update (get-particles board x y) :count inc)
              :color color)))
 
@@ -54,25 +55,34 @@
      (count (adjacent-fields board x y))))
 
 (defn fission-field [board x y]
+  (println "fission-field" x y)
   (let [color (:color (get-particles board x y))]
     (reduce (fn [board [x y]] (force-particle board x y color))
-            (del-particles board x y)
+            (del-particles board x y) ;; if there are more particles than adjacent fields
+            ;; then particles will be wiped out, could be changed but I think
+            ;; it's ok, it's a game not a physic simulation
             (adjacent-fields board x y))))
 
+(defn fission-1-iteration [board]
+  (let [fissions
+        (for [y (range (count board))
+              x (range (count (first board)))
+              :when (fission? board x y)]
+          [x y])]
+    (if (empty? fissions)
+      board (reduce (fn [board [x y]] (fission-field board x y)) board fissions))))
+
+;; fissions can loop infinitely, so we need to detect loops
+;; if a loop is detected we stop and return the board
+;; assumption: if a loop occurs, only one player is left
 (defn fission [board]
   (loop [board board
+         cache #{board}
          n 1]
-    (println board)
-    (println n)
-    (let [fissions
-          (for [y (range (count board))
-                x (range (count (first board)))
-                :when (fission? board x y)]
-            [x y])]
-      (if (empty? fissions)
-        board
-        (recur (reduce (fn [board [x y]] (fission-field board x y)) board fissions) (inc n))))))
-
+    (let [new-board (fission-1-iteration board)]
+      (if (cache new-board) ;; true if loop detected or no fission happened(!)
+        new-board
+        (recur new-board (conj cache new-board) (inc n))))))
 
 ;; (defn particle-colors [board]
 ;;   (distinct (map :color (flatten board))))
@@ -84,20 +94,3 @@
            {}
            (flatten board))
    nil))
-
-(comment
-  (= (type []) (type [1]))
-  (add-particle (make-board 4 4) 1 2 :blue)
-
-  (assoc-in (make-board 4 4) [2 1] [:blue 1])
-
-  (pp/pprint (make-board 4 4))
-
-  (map (fn [x y] (+ x y)) (range 4) (range 4))
-
-  ;;
-  )
-
-
-
-(println "inside othello.reactor")
