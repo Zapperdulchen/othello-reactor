@@ -1,15 +1,11 @@
 (ns othello.view
-  (:require-macros
-   [othello.slurp :refer [slurp-svg]])
   (:require [othello.game :as game :refer [meeple can-move?]]
             ;; [othello.othello :as othello]
             ;; [othello.tictactoe :as tictactoe]
             ;; [othello.reactor :as reactor]
             [othello.reactor-core :as reactor-core]
             [reagent.core :as reagent]
-            [devcards.core :refer-macros [defcard-rg defcard deftest]]
-            [othello.scratchpad]
-            [cljs.test :as test]))
+            [devcards.core :refer-macros [defcard-rg]]))
 
 (def board-size-in-px 500)
 
